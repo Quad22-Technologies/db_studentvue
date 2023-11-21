@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Students (
     gradelevels_id UUID,
     parent_id UUID,
 
-    FOREIGN KEY (Users_ID) REFERENCES Users(ID),  -- must be a valid gradelevel id
+    FOREIGN KEY (users_ID) REFERENCES Users(ID),  -- must be a valid gradelevel id
     FOREIGN KEY (parent_id) REFERENCES Users(ID), -- must be a valid gradelevel id
     FOREIGN KEY (gradelevels_id) REFERENCES GradeLevels(ID) -- must be a valid gradelevel id
 );
@@ -75,12 +75,12 @@ Create logins table
 CREATE TABLE IF NOT EXISTS Logins (
     ID UUID PRIMARY KEY,
 
-    Users_ID UUID NOT NULL,   -- must be a valid student id
-    Username VARCHAR(128) UNIQUE NOT NULL,   -- must be a valid student id
-    PasswordHashed VARCHAR(512) NOT NULL,  -- hashed password using salt. bcrypt is good at hashing according to some sources
-    Salt INT NOT NULL,  -- salt used during hashing
+    users_ID UUID NOT NULL,   -- must be a valid student id
+    username VARCHAR(128) UNIQUE NOT NULL,   -- must be a valid student id
+    passwordHashed VARCHAR(512) NOT NULL,  -- hashed password using salt. bcrypt is good at hashing according to some sources
+    salt INT NOT NULL,  -- salt used during hashing
 
-    FOREIGN KEY (Users_ID) REFERENCES Users(ID)
+    FOREIGN KEY (users_ID) REFERENCES Users(ID)
 );
 
 /*
